@@ -4,10 +4,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import BlogPostCreator from '../components/blogPostCreator';
 import ImageUploadCard from '../components/imageUploaderCard';
 import { DashboardMetrics } from './page';
 import StatsWidget from '../components/statsWidget';
+import { BlogPostCreator } from '../components/blogPostCreator';
+import { SetStateAction } from 'react';
 
 
 
@@ -27,7 +28,7 @@ export default function DashboardClientPage({ metrics }: DashboardClientPageProp
                 </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
-        
+
                 <div className="col-span-1">
                     <StatsWidget title={"Images"} value={metrics.imageCount} description='Images' />
                 </div>
@@ -35,7 +36,7 @@ export default function DashboardClientPage({ metrics }: DashboardClientPageProp
                     <StatsWidget title={"Posts"} value={metrics.BlogPostCount} description='Posts' />
                 </div>
                 <div className="col-span-4">
-                    <ImageUploadCard   />
+                    <ImageUploadCard />
                 </div>
             </div>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
@@ -48,7 +49,9 @@ export default function DashboardClientPage({ metrics }: DashboardClientPageProp
                     </CardContent>
                 </Card>
                 <div className="col-span-5">
-                    <BlogPostCreator />
+                    <BlogPostCreator setIsOpen={function (value: SetStateAction<boolean>): void {
+                        throw new Error('Function not implemented.');
+                    } } />
                 </div>
             </div>
 

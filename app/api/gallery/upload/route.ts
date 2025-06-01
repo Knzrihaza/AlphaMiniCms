@@ -4,6 +4,7 @@ import path from "path";
 import { randomUUID } from "crypto";
 import client from "@/lib/mongoDb";
 import { revalidatePath } from "next/cache";
+import { logger } from "@/lib/functions";
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
@@ -28,6 +29,7 @@ console.log(uploadPath)
     //title,
     //description,
     filename,
+    isSlider : false,
     url: `/uploads/${filename}`,
     createdAt: new Date(),
   });
@@ -43,7 +45,12 @@ console.log(uploadPath)
       },
     );
 
+                logger(db, "gallery:upload", "Image Uploaded")
+    
+
   }
 
+
+  revalidatePath("/dashboard/blog")
   return NextResponse.json({ message: "Image uploaded", filename });
 }

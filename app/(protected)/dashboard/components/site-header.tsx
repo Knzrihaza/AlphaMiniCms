@@ -30,6 +30,7 @@ export async function SiteHeader() {
 
         </div>
       </div>
+
     </header>
   )
 }

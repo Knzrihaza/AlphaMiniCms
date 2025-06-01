@@ -1,27 +1,42 @@
 import { ActivityType } from "@/app/(protected)/dashboard/activity/components/activityFeed";
+import { logger } from "@/lib/functions";
 import client from "@/lib/mongoDb";
 import { Db } from "mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function logger(db: Db, type: ActivityType, title: string) {
 
+export default async function handler(
+    req: NextApiRequest,
+    res: NextApiResponse
+) {
+    if (req.method === 'POST') {
+        return await createBlogItems(req, res)
+    } else if (req.method === 'GET') {
+        return await fetchBlogItems()
+    } else if (req.method === 'DELETE') {
+        return await fetchBlogItems()
+    }
 
-    await db.collection("logs").insertOne(
-        {
-            type: type,
-            title: title,
-            timestamp: new Date(Date.now() - 1000 * 60 * 150),
-        },
-    );
 
 
 }
 
 
 
-export async function POST(req: NextRequest) {
+
+
+
+
+
+
+async function createBlogItems(req: NextApiRequest, res: NextApiResponse) {
+
+    console.log("777777777777", req.body())
+    return
+
     try {
         const formData = await req.formData();
 
@@ -46,23 +61,28 @@ export async function POST(req: NextRequest) {
 
         revalidatePath("/dashboard/blog")
 
-        return NextResponse.json({ message: "Settings saved" });
+        res.status(200).json(await createBlogItems(req, res));
     } catch (error) {
-        return NextResponse.json({ error: error });
+        console.log(error)
+        res.status(500).json("Error Happened somwewhere");
     }
 }
 
 
 
-export async function GET() {
+async function fetchBlogItems(req: NextApiRequest, res: NextApiResponse) {
     try {
         const db = await client.db("photoGemma")
         const images = await db.collection("blog").find().sort({ createdAt: -1 }).toArray();
-        return NextResponse.json(images);
+        return res.status(200).json(images);
+
+
     } catch (error) {
         console.error("Error fetching gallery images:", error);
-        return NextResponse.json({ error: "Failed to load images" }, { status: 500 });
+        return res.status(500).json("Error fetching gallery images: ");
+
     }
 }
+
 
 

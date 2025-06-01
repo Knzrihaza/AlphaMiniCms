@@ -1,3 +1,4 @@
+import { logger } from "@/lib/functions";
 import client from "@/lib/mongoDb";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,6 +23,8 @@ export async function POST(req: NextRequest) {
     { $set: body },
     { upsert: true }
   );
+ await  logger(db, "settings:edit", "Edited Settings")
+  
 
   return NextResponse.json({ message: "Settings saved" });
 }

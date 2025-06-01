@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input"
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea"
+import { handleCreateItem } from "@/lib/functions";
 import { Post } from "@/types/types";
 import { FormEvent, useState } from "react";
 import { toast } from "sonner";
@@ -12,17 +13,14 @@ import { toast } from "sonner";
 
 
 interface SetiSOpen {
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 
 }
 
 
-export default function BlogPostCreator({
-    setIsOpen,
-}: SetiSOpen) {
+export function BlogPostCreator() {
     const [loading, setLoading] = useState(false)
     const [newPost, setNewPost] = useState<Post>({
-        id:"",
         title: "",
         excerpt: "",
         date: new Date().toISOString().split("T")[0],
@@ -40,28 +38,15 @@ export default function BlogPostCreator({
 
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        try {
-            setLoading(true)
-            const formData = new FormData(event.currentTarget)
-            const response = await fetch('/api/blog', {
-                method: 'POST',
-                body: formData,
-                next: { tags: ["posts"] },
-            })
-            const data = await response.json()
-            toast("Success", {
-                description: "Post added successfully",
-            })
-        } catch (error) {
-            toast("error")
-        } finally {
-            setLoading(false)
-            setIsOpen(false)
-        }
+        setLoading(true)
+        const formData = new FormData(event.currentTarget)
 
-
+        const response = await handleCreateItem(formData)
+        setLoading(false)
+        toast(response.toString())
     }
+
+
 
 
 

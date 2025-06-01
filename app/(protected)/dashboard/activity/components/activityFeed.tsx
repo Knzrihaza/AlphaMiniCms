@@ -12,28 +12,13 @@ import {
     ShieldCheck,
     Users,
     Settings2,
+    Settings,
 } from "lucide-react";
 import { JSX } from "react";
+import { Activity, ActivityType } from "@/types/types";
 
 // Activity Type and Sample Data
 
-export type ActivityType =
-    | "blog:create"
-    | "blog:publish"
-    | "blog:edit"
-    | "gallery:upload"
-    | "gallery:delete"
-    | "system:backup"
-    | "system:settings"
-    | "team:assign"
-    | "team:comment";
-
-interface Activity {
-    id: number;
-    type: ActivityType;
-    title: string;
-    timestamp: Date;
-}
 
 // Mapping types to icons and colors
 
@@ -47,6 +32,7 @@ const iconMap: Record<ActivityType, JSX.Element> = {
     "system:settings": <Settings2 className="w-4 h-4 text-gray-500" />,
     "team:assign": <Users className="w-4 h-4 text-pink-500" />,
     "team:comment": <Users className="w-4 h-4 text-indigo-500" />,
+    "settings:edit": <Settings className="w-4 h-4 text-indigo-500" />,
 };
 
 const readableType = (type: ActivityType) =>

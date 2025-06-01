@@ -7,9 +7,10 @@ import { Calendar, User } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { handleDeleteItem } from "@/lib/functions";
 
 interface BlogPostItemProps {
-    id: string;
+    id?: string;
     title: string;
     summary: string;
     author: string;
@@ -59,7 +60,7 @@ export default function BlogPostItem({
 
                 <CardFooter className="px-6 pb-6">
                     <div className="flex gap-4">
-                        <Button onClick={() => console.log("delete")}>
+                        <Button onClick={() => console.log(id, "blog")}>
                             Delete
                         </Button>
                         <Button onClick={() => { setIsEdit(false) }}>
@@ -103,7 +104,7 @@ export default function BlogPostItem({
 
             <CardFooter className="px-6 pb-6">
                 <div className="flex gap-4">
-                    <Button onClick={() => { console.log("first") }}>
+                    <Button onClick={() => handleDeleteItem(id)}>
                         Delete
                     </Button>
                     <Button onClick={() => { setIsEdit(true) }}>

@@ -5,6 +5,7 @@ import { SiteHeader } from "./components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { auth } from "@/components/providers/authProvider"
 import { redirect } from "next/navigation"
+import { SiteAlert } from "./components/site-alert"
 
 export default async function DashboardLayout({
   children,
@@ -26,6 +27,8 @@ export default async function DashboardLayout({
       <AppSidebar variant="inset" />
       <SidebarInset>
         <SiteHeader />
+        <SiteAlert />
+
         <div className="flex flex-1 flex-col">{children}</div>
       </SidebarInset>
     </SidebarProvider>

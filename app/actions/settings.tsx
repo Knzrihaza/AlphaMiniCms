@@ -1,5 +1,6 @@
 'use server';
 
+import { logger } from "@/lib/functions";
 import client from "@/lib/mongoDb";
 import { WebsiteSettings } from "@/types/types";
 
@@ -8,6 +9,8 @@ export async function saveSettings(settings: WebsiteSettings) {
     const db = await client.db("photoGemma");
     console.log(settings)
     await db.collection('settings').updateOne({}, { $set: settings }, { upsert: true });
+
+    await logger(db, "settings:edit", "Edited Settings")
 
     return { success: true };
 }

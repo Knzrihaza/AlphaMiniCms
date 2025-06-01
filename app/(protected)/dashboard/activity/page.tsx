@@ -9,7 +9,7 @@ export default async function Page() {
 
     try {
         const db = await client.db("photoGemma")
-        const images = await db.collection("logs").find().sort({ createdAt: -1 }).toArray();
+        const images = await db.collection("logs").find().sort({ createdAt: "asc" }).toArray();
 
         //console.log(images)
         return (
