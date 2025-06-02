@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function AboutPage() {
     return (
-        <div className="max-w-3xl mx-auto px-4 py-12">
+        <div className=" mx-auto px-4 py-12">
             <Card>
                 <CardHeader className="flex flex-col items-center text-center">
                     <Avatar className="w-24 h-24 mb-4">

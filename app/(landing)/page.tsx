@@ -109,7 +109,6 @@ export default function HomePage() {
                         </div>
                     </section>
 
-                    <TestimonialsSection testimonials={testimonialsData} />
 
 
                     <section className="py-16 px-6 md:px-12 lg:px-24">
@@ -143,9 +142,12 @@ export default function HomePage() {
                     </section>
 
 
+                    <TestimonialsSection testimonials={testimonialsData} />
+
+
                     <ContactSection />
 
-                    
+
 
 
                 </div>
