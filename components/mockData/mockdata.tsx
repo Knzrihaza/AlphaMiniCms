@@ -122,8 +122,8 @@ export const landingData = {
             icon: IconInfoCircle,
         },
         {
-            title: "Gallery",
-            url: "/gallery",
+            title: "Blog",
+            url: "/blog",
             icon: IconPhoto,
         },
         {

@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TestimonialsSection from "./components/ui/testemonialSection";
 import ContactSection from "./components/ui/contactSection";
+import FooterSection from "./components/ui/footerSection";
 
 const carouselImages = [
     { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 1" },
@@ -144,7 +145,7 @@ export default function HomePage() {
 
                     <ContactSection />
 
-
+                    
 
 
                 </div>

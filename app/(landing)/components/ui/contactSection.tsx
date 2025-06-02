@@ -23,7 +23,7 @@ export default function ContactSection() {
     }
 
     return (
-        <section className="py-16 px-6 md:px-12 lg:px-24 bg-gray-100 dark:bg-gray-900">
+        <section className="py-16 px-6 md:px-12 lg:px-24 bg-gray-100 dark:bg-stone-900">
             <div className="max-w-2xl mx-auto text-center mb-10">
                 <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
