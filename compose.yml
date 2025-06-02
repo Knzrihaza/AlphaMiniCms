@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile # Changed to the conventional Dockerfile name, adjust if necessary
+      target: runner
+    volumes:
+      - .:/app # Updated to align with the WORKDIR in the Dockerfile
+    command: npm run dev
+    ports:
+      - "3000:3000" # Changed to the default Next.js port, adjust if necessary
+    environment:
+      NODE_ENV: development
+    networks:
+      - node-network
+
+networks:
+  node-network:
+    driver: bridge
