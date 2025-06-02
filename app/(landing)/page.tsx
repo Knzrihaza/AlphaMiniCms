@@ -1,7 +1,7 @@
 // app/page.tsx
 
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
     Carousel,
     CarouselContent,
@@ -11,12 +11,41 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
+import TestimonialsSection from "./components/ui/testemonialSection";
+import ContactSection from "./components/ui/contactSection";
 
 const carouselImages = [
     { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 1" },
     { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 2" },
     { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 3" },
 ];
+
+
+
+const pricingPlans = [
+    { title: "Basic", description: "For individuals", price: "Free" },
+    { title: "Pro", description: "For professionals", price: "$9/mo" },
+    { title: "Enterprise", description: "For large teams", price: "Custom" },
+]
+
+
+const testimonialsData = [
+    {
+        name: "Alice Johnson",
+        quote: "The customization options are amazing — exactly what I needed.",
+        role: "UI Designer"
+    },
+    {
+        name: "Mark Patel",
+        quote: "Simple, clean, and powerful. This platform just works.",
+        role: "Photographer"
+    },
+    {
+        name: "Sara Kim",
+        quote: "I love how intuitive everything is. It saved me so much time!",
+        role: "Freelancer"
+    }
+]
 
 export default function HomePage() {
     return (
@@ -78,6 +107,44 @@ export default function HomePage() {
                             </p>
                         </div>
                     </section>
+
+                    <TestimonialsSection testimonials={testimonialsData} />
+
+
+                    <section className="py-16 px-6 md:px-12 lg:px-24">
+                        <div className="text-center mb-12">
+                            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                Pricing Plans
+                            </h2>
+                            <p className="text-gray-600 dark:text-gray-300 mt-2">
+                                Choose a plan that suits your needs.
+                            </p>
+                        </div>
+
+                        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            {pricingPlans.map((plan, index) => (
+                                <Card key={index} className="shadow hover:shadow-lg transition-shadow">
+                                    <CardHeader>
+                                        <CardTitle className="text-xl">{plan.title}</CardTitle>
+                                        <p className="text-gray-500 dark:text-gray-400 text-sm">
+                                            {plan.description}
+                                        </p>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                                            {plan.price}
+                                        </div>
+                                        <Button className="w-full">Get Started</Button>
+                                    </CardContent>
+                                </Card>
+                            ))}
+                        </div>
+                    </section>
+
+
+                    <ContactSection />
+
+
 
 
                 </div>

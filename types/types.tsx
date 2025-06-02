@@ -2,6 +2,8 @@ export interface GalleryImage {
     _id: string;
     title: string;
     description: string;
+    isSlider: boolean;
+    category:string
     filename: string;
     url: string;
     createdAt: string;
@@ -24,6 +26,16 @@ export type WebsiteSettings = {
     socialSharing: boolean;
     watermarkEnabled: boolean;
 };
+
+
+
+export interface FetchOptions {
+    sort?: Record<string, 1 | -1>;
+    filter?: Record<string, any>;
+    limit?: number;
+}
+
+
 
 
 export interface Post {

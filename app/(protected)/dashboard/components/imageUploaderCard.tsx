@@ -8,6 +8,8 @@ import { X } from "lucide-react";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { useRouter } from 'next/navigation';
+import { Label } from "@/components/ui/label";
+import { CategorySelecter } from "@/components/widgets/imageDialog";
 
 type ImageUploadCardProps = {
     variant?: "dropzone" | "input";
@@ -91,19 +93,33 @@ export default function ImageUploadCard({ variant = "dropzone" }: ImageUploadCar
 
                         {images.length > 0 && (
                             <>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-4">
                                     {images.map((image, index) => (
-                                        <div key={index} className="relative w-32 h-24 rounded-md overflow-hidden">
-                                            <Image src={image.preview} alt="Preview" fill className="object-cover" />
-                                            <Button
-                                                onClick={() => handleDelete(index)}
-                                                variant="ghost"
-                                                size="icon"
-                                                className="absolute top-1 right-1 bg-white/80 hover:bg-red-100 rounded-full p-1 shadow"
-                                                aria-label="Remove image"
-                                            >
-                                                <X className="w-4 h-4 text-red-500" />
-                                            </Button>
+                                        <div key={index} className="relative  rounded-md overflow-hidden">
+                                            <div className="relative flex items-center gap-4 p-2 border rounded-lg shadow-sm">
+                                                {/* Left: Image preview */}
+                                                <div className="relative w-16 h-16 flex-shrink-0 overflow-hidden rounded-md bg-gray-100">
+                                                    <Image src={image.preview} alt="Preview" fill className="object-cover" />
+                                                </div>
+
+                                                {/* Right: File info and delete button */}
+                                                <div className="flex flex-col flex-grow justify-center">
+                                                    <Label className="text-sm font-medium">Name</Label>
+                                                    <Input className="text-xs text-gray-500" />
+                                                    <Label className="text-sm font-medium">Tag</Label>
+                                                    <CategorySelecter  />                                             </div>
+
+                                                {/* Delete button */}
+                                                <Button
+                                                    onClick={() => handleDelete(index)}
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="absolute top-1 right-1 bg-white/80 hover:bg-red-100 rounded-full p-1 shadow"
+                                                    aria-label="Remove image"
+                                                >
+                                                    <X className="w-4 h-4 text-red-500" />
+                                                </Button>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

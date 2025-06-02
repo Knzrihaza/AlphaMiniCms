@@ -1,14 +1,12 @@
 
 import { GalleryImage } from "@/types/types";
 import client from "@/lib/mongoDb";
-import GalleryUi from "./client";
-import { revalidatePath } from "next/cache";
+import GalleryUi, { Category } from "./client";
+import { fetchCollectionData, handleFetchCategory } from "@/lib/functions";
 
 
 
-export async function uploader(params: type) {
 
-}
 
 
 
@@ -16,25 +14,23 @@ export default async function GalleryAdminPage() {
 
 
     // Don't await the data fetching function
+
     try {
         const db = await client.db("photoGemma")
-        const data = await db.collection("gallery_images").find().sort({ createdAt: -1 }).toArray();
-        const posts: GalleryImage[] = JSON.parse(JSON.stringify(data));
-        console.log("8888888888888", posts)
+
+        const galleryData = await fetchCollectionData<GalleryImage>(db, "gallery_images")
+
+        const categoryData = await handleFetchCategory()
+
+        const data = {
+            images: galleryData,
+            categories: categoryData,
+        };
         return (
-            <GalleryUi data={posts} />
+            <GalleryUi data={galleryData} categoryData={categoryData} />
         );
-
     } catch (error) {
-        console.log(error)
-
+        return <h1>Something bad happened</h1>;
     }
-
-
-
-
-
-
-
 
 }

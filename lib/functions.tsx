@@ -1,9 +1,9 @@
 "use server"
-import { ActivityType, Post } from "@/types/types";
+import { ActivityType, FetchOptions } from "@/types/types";
 import { Db, ObjectId } from "mongodb";
 import client from "./mongoDb";
 import { revalidatePath } from "next/cache";
-import { FormEvent } from "react";
+import { Category } from "@/app/(protected)/dashboard/gallery/client";
 
 
 
@@ -27,7 +27,7 @@ export async function handleFetchCategory() {
 
     const db = await client.db("photoGemma")
     const data = await db.collection("categories").find().sort({ createdAt: -1 }).toArray();
-    const posts = JSON.parse(JSON.stringify(data));
+    const posts: Category[] = JSON.parse(JSON.stringify(data));
     return posts
 }
 
@@ -52,6 +52,36 @@ export async function handleCreateCategory(categoryName: string) {
 
 }
 
+
+
+export async function handleEditImage(imageId: string, newName: string, newCategory: string) {
+    try {
+        const db = await client.db("photoGemma");
+
+        const result = await db.collection("gallery_images").updateOne(
+            { _id: new ObjectId(imageId) },
+            {
+                $set: {
+                    name: newName,
+                    category: newCategory,
+                    updatedAt: new Date()
+                }
+            }
+        );
+
+        if (result.modifiedCount === 0) {
+            return "No changes made or image not found";
+        }
+
+        return "Image updated successfully";
+    } catch (error) {
+        console.error("Edit error:", error);
+        return "An error occurred while editing the image";
+    }
+}
+
+
+
 export async function handleCreateItem(formData: FormData, collectionName?: string) {
     try {
         console.log("kkkkkkk", formData.get("title"))
@@ -75,6 +105,35 @@ export async function handleCreateItem(formData: FormData, collectionName?: stri
 
 
 }
+
+
+
+export async function fetchCollectionData<T>(
+    db: Db,
+    collectionName: string,
+    options: FetchOptions = {}
+): Promise<T[]> {
+    const {
+        sort = { createdAt: -1 },
+        filter = {},
+        limit,
+    } = options;
+
+    try {
+        const collection = db.collection(collectionName);
+        let cursor = collection.find(filter).sort(sort);
+        if (limit !== undefined) {
+            cursor = cursor.limit(limit);
+        }
+
+        const data = await cursor.toArray();
+        return JSON.parse(JSON.stringify(data)) as T[];
+    } catch (error) {
+        throw new Error(`Failed to fetch data from ${collectionName}: ${error}`);
+    }
+}
+
+
 
 
 

@@ -13,31 +13,42 @@ import ImageDialog from "@/components/widgets/imageDialog";
 import ImageDisplay from "@/components/widgets/imageDisplay";
 import ImageUploaderCard from "../components/imageUploaderCard";
 import { Spinner } from "@/components/ui/spinner";
-import { SheetPopup } from "../components/categories";
-import { MenubarDemo } from "../components/categoriesMenu";
+import { SheetPopup } from "../components/sheetPopup";
+import { CategoriesMainMenu } from "../components/categoriesMainMenu";
+import { type } from "os";
 
 
 
+export type Category = {
+    _id: string,
+    categoryName: string
+}
+
+
+export interface Tests {
+    data: GalleryImage[],
+    categoryData: Category[]
+}
 
 
 
-
-export default function GalleryUi({ data }: { data: GalleryImage[] }) {
+export default function GalleryUi({ data, categoryData }: Tests) {
     const [selectedImage, setSelectedImage] = useState<GalleryImage>();
     const [displayType, setDisplayType] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedCategory, setSelectedCategorie] = useState("all")
 
 
 
 
-    console.log(data)
+    console.log("[[[[[[[[[[[[", selectedCategory)
 
 
 
 
 
     return (
-        <main className="  px-4 py-12">
+        <main className="  px-4 py-12 gap-3">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
                 Activity Feed from db
             </h1>
@@ -67,8 +78,16 @@ export default function GalleryUi({ data }: { data: GalleryImage[] }) {
 
                     </ToggleGroup>
                 </CardHeader>
-                <MenubarDemo />
+                < CategoriesMainMenu setSelectedCategorie={setSelectedCategorie} isDashboard />
                 <CardContent>
+
+
+
+
+
+
+
+
 
 
 
@@ -82,13 +101,23 @@ export default function GalleryUi({ data }: { data: GalleryImage[] }) {
                                 <Spinner size="large" />
                             ) : (
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    {data.map((img) => (
+
+
+                                    {(selectedCategory === "all"
+                                        ? data
+                                        : data.filter(img => img.category === selectedCategory)
+                                    ).map((img) => (
                                         <ImageDisplay
                                             key={img._id}
                                             img={img}
                                             setSelectedImage={setSelectedImage}
-                                            setIsOpen={setIsOpen} />
+                                            setIsOpen={setIsOpen}
+                                        />
                                     ))}
+
+
+
+
                                 </div>
                             )}
                         </>

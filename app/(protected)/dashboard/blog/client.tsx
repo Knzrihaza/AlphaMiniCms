@@ -1,23 +1,21 @@
 "use client";
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
 
 import BlogPostItem from "../components/blogPost";
-import { toast } from "sonner"
 import { DialogButton } from "../components/dialogButton";
 import { Post } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { BlogPostCreator } from "../components/blogPostCreator";
 
 
 
 
 export default function BlogAdminPage({
-    posts
-}: { posts: Post[] }) {
+    data
+}: { data: Post[] }) {
     const [open, setIsOpen] = useState(false)
 
-    console.log(posts)
+    console.log(data)
 
 
 
@@ -44,18 +42,17 @@ export default function BlogAdminPage({
                 </CardHeader>
                 <CardContent>
 
-
                     <div className="grid gap-6">
-                        {posts && posts.length > 0 ? (
-                            posts.map((post, id) => (
+                        {data && data.length > 0 ? (
+                            data.map((item, id) => (
                                 <BlogPostItem
                                     key={id}
-                                    title={post.title}
-                                    summary={post.slug}
+                                    title={item.title}
+                                    summary={item.slug}
                                     author={"uuuuuuuuuuuuuuuuuuuu"}
-                                    date={post.title}
-                                    imageUrl={post.image}
-                                    id={post._id}
+                                    date={item.title}
+                                    imageUrl={item.image}
+                                    id={item._id}
                                 />
                             ))
                         ) : (

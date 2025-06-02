@@ -1,4 +1,4 @@
-import { IconDashboard, IconListDetails, IconCamera, IconFileDescription, IconFileAi, IconSettings, IconHelp, IconSearch, IconDatabase, IconFileWord, IconHome, IconInfoCircle, IconMail, IconPhoto } from "@tabler/icons-react";
+import { IconDashboard, IconListDetails, IconCamera, IconFileDescription, IconFileAi, IconSettings, IconHelp, IconSearch, IconDatabase, IconFileWord, IconHome, IconInfoCircle, IconMail, IconPhoto, IconActivity, IconArticle, IconLayoutDashboard, IconWorld } from "@tabler/icons-react";
 
 export const data = {
 
@@ -6,28 +6,29 @@ export const data = {
         {
             title: "Dashboard",
             url: "/dashboard",
-            icon: IconDashboard,
+            icon: IconLayoutDashboard,
+        },
+        {
+            title: "Landing Page",
+            url: "/dashboard/landing",
+            icon: IconWorld,
         },
         {
             title: "Activity",
             url: "/dashboard/activity",
-            icon: IconListDetails,
+            icon: IconActivity,
         },
         {
             title: "Blog",
             url: "/dashboard/blog",
-            icon: IconListDetails,
+            icon: IconArticle,
         },
         {
             title: "Gallery",
             url: "/dashboard/gallery",
-            icon: IconListDetails,
+            icon: IconPhoto,
         },
-        {
-            title: "Settings",
-            url: "/dashboard/settings",
-            icon: IconSettings,
-        },
+
 
 
     ],
@@ -132,58 +133,11 @@ export const landingData = {
         },
 
     ],
-    navClouds: [
-        {
-            title: "Capture",
-            icon: IconCamera,
-            isActive: true,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
-                },
-                {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Proposal",
-            icon: IconFileDescription,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
-                },
-                {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Prompts",
-            icon: IconFileAi,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
-                },
-                {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
-        },
-    ],
+
     navSecondary: [
         {
             title: "Settings",
-            url: "#",
+            url: "/dashboard/settings",
             icon: IconSettings,
         },
         {
