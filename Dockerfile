@@ -1,4 +1,4 @@
-GNU nano 6.2                                           Dockerfile                                                     FROM node:18-alpine as Runner
+FROM node:23-alpine as Runner
 
 WORKDIR /app
 

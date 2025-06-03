@@ -6,11 +6,9 @@ services:
       target: runner
     volumes:
       - .:/app # Updated to align with the WORKDIR in the Dockerfile
-    command: npm run dev
+    command: npm start
     ports:
       - "3000:3000" # Changed to the default Next.js port, adjust if necessary
-    environment:
-      NODE_ENV: development
     networks:
       - node-network
 
