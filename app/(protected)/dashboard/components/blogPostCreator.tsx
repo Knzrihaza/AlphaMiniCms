@@ -12,10 +12,7 @@ import { toast } from "sonner";
 
 
 
-interface SetiSOpen {
-    setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 
-}
 
 
 export function BlogPostCreator() {

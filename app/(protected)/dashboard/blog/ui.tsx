@@ -72,7 +72,7 @@ export default function BlogAdminPage({
                                     />
                                 </svg>
                                 <p className="text-lg font-medium">No posts yet</p>
-                                <p className="text-sm text-gray-400 mt-1">Once posts are available, they'll show up here.</p>
+                                <p className="text-sm text-gray-400 mt-1">Once posts are available, theyll show up here.</p>
                             </div>
                         )}
                     </div>

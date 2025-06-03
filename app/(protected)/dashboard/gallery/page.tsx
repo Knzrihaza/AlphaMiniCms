@@ -1,7 +1,7 @@
 
 import { GalleryImage } from "@/types/types";
 import client from "@/lib/mongoDb";
-import GalleryUi, { Category } from "./client";
+import GalleryUi from "./ui";
 import { fetchCollectionData, handleFetchCategory } from "@/lib/functions";
 
 
@@ -22,14 +22,12 @@ export default async function GalleryAdminPage() {
 
         const categoryData = await handleFetchCategory()
 
-        const data = {
-            images: galleryData,
-            categories: categoryData,
-        };
+
         return (
             <GalleryUi data={galleryData} categoryData={categoryData} />
         );
     } catch (error) {
+        console.log(error)
         return <h1>Something bad happened</h1>;
     }
 

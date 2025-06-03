@@ -6,12 +6,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { Post } from "@/types/types";
 
+type BlogItemsProps = {
+    blogPosts: Post[];
+};
+export default function BlogItems({ blogPosts }: BlogItemsProps) {
 
-export default function BlogItems({ blogPosts }) {
 
-
-    const [posts, setPosts] = useState<Post[]>(blogPosts)
-
+    const [posts, setPosts] = useState<Post[]>()
+    setPosts(blogPosts)
 
     console.log("ttttttttttttt", blogPosts)
 

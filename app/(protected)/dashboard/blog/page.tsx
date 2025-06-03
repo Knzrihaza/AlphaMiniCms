@@ -1,5 +1,5 @@
 import { Post } from "@/types/types";
-import BlogAdminPage from "./client";
+import BlogAdminPage from "./ui";
 import client from "@/lib/mongoDb";
 import { fetchCollectionData } from "@/lib/functions";
 
@@ -17,6 +17,7 @@ export default async function Page() {
             <BlogAdminPage data={data} />
         );
     } catch (error) {
+        console.log(error)
         return <h1>Something bad happened</h1>;
     }
 

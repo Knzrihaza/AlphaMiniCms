@@ -10,7 +10,6 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
-import { signOut } from "@/components/providers/authProvider"
 
 export function NavUser({
   user,
@@ -25,7 +24,7 @@ export function NavUser({
 
   async function onSubmit() {
     //console.log("Auth credentials", formData.get("email"), formData.get("password"))
-    
+
   }
 
 
@@ -73,7 +72,10 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={e => { onSubmit() }} >
+            <DropdownMenuItem onClick={e => {
+              e.preventDefault()
+              onSubmit()
+            }} >
               <IconLogout />
               Log out
             </DropdownMenuItem>

@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 import { SheetPopup } from "./sheetPopup"
 import { useEffect, useState } from "react"
 import { handleFetchCategory } from "@/lib/functions"
-import { GalleryImage } from "@/types/types"
 
 type CategoryType = {
     _id: string

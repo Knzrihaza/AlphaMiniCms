@@ -1,11 +1,11 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { GalleryImage } from "@/types/types";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Bold, CalendarDays, GalleryThumbnails, List } from "lucide-react";
+import { GalleryThumbnails, List } from "lucide-react";
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
@@ -13,9 +13,7 @@ import ImageDialog from "@/components/widgets/imageDialog";
 import ImageDisplay from "@/components/widgets/imageDisplay";
 import ImageUploaderCard from "../components/imageUploaderCard";
 import { Spinner } from "@/components/ui/spinner";
-import { SheetPopup } from "../components/sheetPopup";
 import { CategoriesMainMenu } from "../components/categoriesMainMenu";
-import { type } from "os";
 
 
 
@@ -27,12 +25,11 @@ export type Category = {
 
 export interface Tests {
     data: GalleryImage[],
-    categoryData: Category[]
 }
 
 
 
-export default function GalleryUi({ data, categoryData }: Tests) {
+export default function GalleryUi({ data }: Tests) {
     const [selectedImage, setSelectedImage] = useState<GalleryImage>();
     const [displayType, setDisplayType] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
@@ -80,22 +77,7 @@ export default function GalleryUi({ data, categoryData }: Tests) {
                 </CardHeader>
                 < CategoriesMainMenu setSelectedCategorie={setSelectedCategorie} isDashboard />
                 <CardContent>
-
-
-
-
-
-
-
-
-
-
-
                     {!displayType ? (
-
-
-
-
                         <>
                             {data.length === 0 ? (
                                 <Spinner size="large" />

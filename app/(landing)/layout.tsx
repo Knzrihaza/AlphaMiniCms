@@ -1,12 +1,8 @@
 import { cookies } from "next/headers"
 import "./theme.css"
-import { AppSidebar } from "./components/app-sidebar"
 import { SiteHeader } from "./components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { auth } from "@/components/providers/authProvider"
-import { redirect } from "next/navigation"
-import { landingData } from "@/components/mockData/mockdata"
-import { NavMain } from "./components/nav-main"
+
 import FooterSection from "./components/ui/footerSection"
 
 export default async function LandingLayout({

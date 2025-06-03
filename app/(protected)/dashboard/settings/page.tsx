@@ -56,7 +56,7 @@ export default function WebsiteSettingsPage() {
       console.log("Chrollolooo", settings)
     }
     fetchData();
-  }, []);
+  });
 
 
   const handleSave = async () => {

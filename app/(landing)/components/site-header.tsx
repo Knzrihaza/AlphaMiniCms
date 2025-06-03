@@ -1,6 +1,5 @@
 
 import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
 import { ModeToggle } from "./mode-toggle"
 import { auth } from "@/components/providers/authProvider"
 import LoginBtn from "./loginBtn"

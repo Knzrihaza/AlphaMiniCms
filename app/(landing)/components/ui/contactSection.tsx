@@ -27,7 +27,7 @@ export default function ContactSection() {
             <div className="max-w-2xl mx-auto text-center mb-10">
                 <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Contact Us</h2>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                    Have a question or want to work together? We'd love to hear from you.
+                    Have a question or want to work together? We&#39;d love to hear from you.
                 </p>
             </div>
 

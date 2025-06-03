@@ -2,9 +2,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { formatDistanceToNow } from "date-fns";
 import {
-    Upload,
     Edit2,
     Trash2,
     BookOpen,

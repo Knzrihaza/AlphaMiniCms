@@ -20,7 +20,7 @@ export async function loadSettings() {
     const settings = await db.collection('settings').findOne({});
     //console.log("Settings test", settings)
     if (!settings) return null;
-    const { _id, ...cleanedSettings } = settings;
+    const { ...cleanedSettings } = settings;
     // Serialize the settings to convert complex types
     const serializedSettings = JSON.parse(JSON.stringify(cleanedSettings));
     return serializedSettings;

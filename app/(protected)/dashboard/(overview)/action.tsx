@@ -8,7 +8,6 @@ import ImageUploadCard from '../components/imageUploaderCard';
 import { DashboardMetrics } from './page';
 import StatsWidget from '../components/statsWidget';
 import { BlogPostCreator } from '../components/blogPostCreator';
-import { SetStateAction } from 'react';
 
 
 
@@ -49,9 +48,7 @@ export default function DashboardClientPage({ metrics }: DashboardClientPageProp
                     </CardContent>
                 </Card>
                 <div className="col-span-5">
-                    <BlogPostCreator setIsOpen={function (value: SetStateAction<boolean>): void {
-                        throw new Error('Function not implemented.');
-                    } } />
+                    <BlogPostCreator />
                 </div>
             </div>
 

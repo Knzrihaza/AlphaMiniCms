@@ -129,7 +129,7 @@ export default function ProfilePage() {
                         />
                     </div>
                     <div>
-                        <Label htmlFor="bioConnect">Let's Connect</Label>
+                        <Label htmlFor="bioConnect">Let&#39;s Connect</Label>
                         <Textarea
                             id="bioConnect"
                             value={profile.bioConnect}

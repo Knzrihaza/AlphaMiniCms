@@ -6,7 +6,8 @@ import { useState } from "react";
 
 
 export default function FileUploader() {
-    const [tst, setTst] = useState(false)
+    const [onFilesExist, setOnFilesExist] = useState(false)
+    const [selectedImages, setSelectedImages] = useState<string[]>()
 
     const handleUpload = async (file: File) => {
 
@@ -49,13 +50,15 @@ export default function FileUploader() {
         }
     };
 
+
     const handleImageDelete = (index: number) => {
+        // @ts-ignore
         setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
     };
 
 
 
-    if (tst) return (
+    if (onFilesExist) return (
         <Card>
             <CardHeader>
                 <CardTitle>Upload Images</CardTitle>

@@ -7,13 +7,13 @@ import { Input } from "../ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Button } from "../ui/button";
 import { handleEditImage, handleFetchCategory } from "@/lib/functions";
-import { Category } from "@/app/(protected)/dashboard/gallery/client";
+import { Category } from "@/app/(protected)/dashboard/gallery/ui";
 import { Spinner } from "../ui/spinner";
 import { toast } from "sonner";
 interface ImageDialogProps {
     isOpen: boolean;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
-    selectedImage: GalleryImage;
+    selectedImage?: GalleryImage;
 }
 
 export function CategorySelecter(prop) {

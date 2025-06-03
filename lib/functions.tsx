@@ -3,7 +3,7 @@ import { ActivityType, FetchOptions } from "@/types/types";
 import { Db, ObjectId } from "mongodb";
 import client from "./mongoDb";
 import { revalidatePath } from "next/cache";
-import { Category } from "@/app/(protected)/dashboard/gallery/client";
+import { Category } from "@/app/(protected)/dashboard/gallery/ui";
 
 
 
@@ -42,11 +42,12 @@ export async function handleCreateCategory(categoryName: string) {
             categoryName: categoryName
         });
 
-
+        console.log(data)
         //revalidatePath("dashboard/gallery")
         //setLoading(true)
         return ("Item Created Successfully")
     } catch (error) {
+        console.log(error)
         return ("An Error happened")
     }
 
@@ -82,7 +83,7 @@ export async function handleEditImage(imageId: string, newName: string, newCateg
 
 
 
-export async function handleCreateItem(formData: FormData, collectionName?: string) {
+export async function handleCreateItem(formData: FormData) {
     try {
         console.log("kkkkkkk", formData.get("title"))
         //return NextResponse.json({ message: "Settings saved" });
@@ -95,11 +96,12 @@ export async function handleCreateItem(formData: FormData, collectionName?: stri
             image: formData.get("image")
         });
 
-
+        console.log(data)
         // revalidatePath("/dashboard/blog")
         //setLoading(true)
         return ("Item Created Successfully")
     } catch (error) {
+        console.log(error)
         return ("An Error happened")
     }
 

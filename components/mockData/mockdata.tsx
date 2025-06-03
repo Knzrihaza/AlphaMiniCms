@@ -1,4 +1,4 @@
-import { IconDashboard, IconListDetails, IconCamera, IconFileDescription, IconFileAi, IconSettings, IconHelp, IconSearch, IconDatabase, IconFileWord, IconHome, IconInfoCircle, IconMail, IconPhoto, IconActivity, IconArticle, IconLayoutDashboard, IconWorld } from "@tabler/icons-react";
+import { IconCamera, IconFileDescription, IconFileAi, IconSettings, IconHelp, IconSearch, IconDatabase, IconHome, IconInfoCircle, IconMail, IconPhoto, IconActivity, IconArticle, IconLayoutDashboard, IconWorld } from "@tabler/icons-react";
 
 export const data = {
 

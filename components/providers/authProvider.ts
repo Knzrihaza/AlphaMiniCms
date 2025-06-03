@@ -1,4 +1,4 @@
-import NextAuth, { User } from "next-auth"
+import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 // Your own logic for dealing with plaintext password strings; be careful!
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
@@ -48,7 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         console.log("hashed passwrd", pwHash)
  
         // logic to verify if the user exists
-        user = await getUserFromDb(credentials.email, pwHash)
+        user = await getUserFromDb(credentials.email as string, pwHash)
  
         if (!user) {
           // No user found, so this is their first attempt to login

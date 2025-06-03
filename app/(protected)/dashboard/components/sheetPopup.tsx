@@ -9,22 +9,26 @@ import {
 } from "@/components/ui/popover"
 import { Spinner } from "@/components/ui/spinner"
 import { handleCreateCategory } from "@/lib/functions"
-import { FormEvent, useState } from "react"
+import { useState } from "react"
 import { toast } from "sonner"
 
 
 
 
-export function SheetPopup({ datafetcher    }) {
+export function SheetPopup({ datafetcher }) {
     const [isLoading, setIsLoading] = useState(false)
     const [newCategory, setNewCategory] = useState("");
 
     async function onSubmit() {
-        //setIsLoading(true)
+
+        setIsLoading(true)
         console.log(newCategory)
         toast(await handleCreateCategory(newCategory))
         setNewCategory("")
+        setIsLoading(false)
         datafetcher()
+
+
     }
 
 

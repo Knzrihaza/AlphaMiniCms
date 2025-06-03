@@ -18,20 +18,20 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <p>
-                        Welcome! I'm Alex, a passionate photographer dedicated to capturing the essence of moments through my lens. With a keen eye for detail and a love for storytelling, I transform everyday scenes into compelling visual narratives.
+                        Welcome! Im Alex, a passionate photographer dedicated to capturing the essence of moments through my lens. With a keen eye for detail and a love for storytelling, I transform everyday scenes into compelling visual narratives.
                     </p>
                     <Separator />
                     <div>
                         <h2 className="text-xl font-semibold mb-2">My Journey</h2>
                         <p>
-                            Over the past decade, I've explored various facets of photography, from intimate portraits to expansive landscapes. Each project has been an opportunity to connect with people and places, enriching my perspective and honing my craft.
+                            Over the past decade, Ive explored various facets of photography, from intimate portraits to expansive landscapes. Each project has been an opportunity to connect with people and places, enriching my perspective and honing my craft.
                         </p>
                     </div>
                     <Separator />
                     <div>
-                        <h2 className="text-xl font-semibold mb-2">Let's Connect</h2>
+                        <h2 className="text-xl font-semibold mb-2">Let&apos;s Connect</h2>
                         <p>
-                            I'm always eager to collaborate on new projects or simply chat about photography. Feel free to reach out through the contact page or connect with me on social media.
+                            I&apos;m always eager to collaborate on new projects or simply chat about photography. Feel free to reach out through the contact page or connect with me on social media.
                         </p>
                     </div>
                 </CardContent>

@@ -1,16 +1,12 @@
 "use client"
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
-import { ModeToggle } from "./mode-toggle"
-import { NavUser } from "./nav-user"
-import { data } from "@/components/mockData/mockdata"
-import { auth } from "@/components/providers/authProvider"
+
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CheckCircle2Icon, PopcornIcon, AlertCircleIcon } from "lucide-react"
+import { AlertCircleIcon } from "lucide-react"
 import { useState } from "react"
 
 export function SiteAlert() {
   const [alert, setAlert] = useState("")
+  setAlert("This site is under heavy developement")
   if (alert) {
     return (
       <div className="">

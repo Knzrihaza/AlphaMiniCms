@@ -2,7 +2,6 @@
 
 import { landingData } from "@/components/mockData/mockdata"
 import { cn } from "@/lib/utils"
-import { IconCirclePlusFilled, IconMail, type Icon } from "@tabler/icons-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 

@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface ImageDisplayProps {
     img: GalleryImage;
-    setSelectedImage: Dispatch<SetStateAction<GalleryImage>>;
+    setSelectedImage: Dispatch<SetStateAction<GalleryImage | undefined>>;
     setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
