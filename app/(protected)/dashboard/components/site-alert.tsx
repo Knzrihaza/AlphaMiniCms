@@ -6,7 +6,6 @@ import { useState } from "react"
 
 export function SiteAlert() {
   const [alert, setAlert] = useState("")
-  setAlert("This site is under heavy developement")
   if (alert) {
     return (
       <div className="">

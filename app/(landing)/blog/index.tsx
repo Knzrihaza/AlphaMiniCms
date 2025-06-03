@@ -12,8 +12,7 @@ type BlogItemsProps = {
 export default function BlogItems({ blogPosts }: BlogItemsProps) {
 
 
-    const [posts, setPosts] = useState<Post[]>()
-    setPosts(blogPosts)
+    const [posts, setPosts] = useState<Post[]>(blogPosts)
 
     console.log("ttttttttttttt", blogPosts)
 

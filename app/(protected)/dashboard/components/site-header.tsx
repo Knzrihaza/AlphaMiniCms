@@ -25,7 +25,9 @@ export async function SiteHeader() {
         <div className="ml-auto flex items-center gap-2">
 
           <ModeToggle />
-          <NavUser user={test.user} />
+          {test!.user ? (
+            <NavUser user={test!.user} />
+          ) : null}
 
         </div>
       </div>

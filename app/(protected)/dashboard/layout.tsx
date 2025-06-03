@@ -4,8 +4,8 @@ import { AppSidebar } from "./components/app-sidebar"
 import { SiteHeader } from "./components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { auth } from "@/components/providers/authProvider"
-import { redirect } from "next/navigation"
 import { SiteAlert } from "./components/site-alert"
+import { redirect } from "next/navigation"
 
 export default async function DashboardLayout({
   children,
