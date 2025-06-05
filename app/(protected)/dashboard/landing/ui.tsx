@@ -9,27 +9,12 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import TestimonialsSectionDashboard from '../components/ui/testemonials';
 import { LandingPageData } from '@/types/types';
-import { Checkbox } from '@/components/ui/checkbox';
 import { PricingItem } from '@/app/(landing)/components/ui/pricingSection';
-import { DeleteButton } from '../components/deleteButton';
+import { ReusableAddItemDialog } from '../components/addLandingItem';
 
 export default function DashboardPage({ data }: { data: LandingPageData }) {
 
 
-    const [features, setFeatures] = useState([
-        {
-            title: 'Easy Customization',
-            desc: 'Tailor your portfolio or gallery to reflect your unique style with our intuitive customization options.',
-        },
-        {
-            title: 'Responsive Design',
-            desc: 'Your work will look great on any device, ensuring a seamless experience for all visitors.',
-        },
-        {
-            title: 'Secure & Private',
-            desc: 'Keep your personal photos safe with our robust privacy settings and secure storage solutions.',
-        },
-    ]);
 
 
 
@@ -37,11 +22,8 @@ export default function DashboardPage({ data }: { data: LandingPageData }) {
 
     const [landingData, setLandingData] = useState(data);
 
-    const [hero, setHero] = useState({
-        headline: 'Ready to Get Started?',
-        description: 'Create your personalized portfolio or private gallery today.',
-        cta: 'Contact Us',
-    });
+
+
     return (
         <div className=" gap-4 px-4 py-12">
             <h1 className=" text-3xl font-bold text-gray-900 dark:text-white mb-6">Landing Page Editor</h1>
@@ -50,6 +32,7 @@ export default function DashboardPage({ data }: { data: LandingPageData }) {
 
             <Card>
                 <CardHeader>
+
                     <CardTitle>Hero Section</CardTitle>
                     <div className="flex items-center space-x-2">
                         <Switch id="airplane-mode" />
@@ -58,21 +41,21 @@ export default function DashboardPage({ data }: { data: LandingPageData }) {
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <Input
-                        value={landingData.hero.headline}
                         onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, headline: e.target.value } })}
                         placeholder="Headline"
-                        defaultValue={data.hero.headline}
+                        defaultValue={landingData.hero.headline}
                     />
                     <Textarea
-                        value={landingData.hero.description}
                         onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, description: e.target.value } })}
                         placeholder="Description"
+                        defaultValue={landingData.hero.description}
                     />
                     <Input
-                        value={landingData.hero.cta.text}
-                        onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, cta: { ...landingData.hero.cta, text: e.target.value } } })}
-                        placeholder="CTA Button Text"
+                        onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, description: e.target.value } })}
+                        placeholder="Description"
+                        defaultValue={landingData.hero.cta.text}
                     />
+
                 </CardContent>
                 <CardFooter>
                     <Button onClick={() => console.log(landingData.hero)}>Send</Button>
@@ -84,13 +67,15 @@ export default function DashboardPage({ data }: { data: LandingPageData }) {
             {/* Features Section Editor */}
             <Card>
                 <CardHeader>
+                    <ReusableAddItemDialog itemType={'feature'} />
+
                     <CardTitle>Features</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     {landingData.features.map((feature, index) => (
                         <div key={index} className="space-y-2">
                             <Input
-                                value={feature.title}
+                                defaultValue={feature.title}
                                 onChange={(e) =>
                                     setLandingData({
                                         ...landingData,
@@ -102,7 +87,7 @@ export default function DashboardPage({ data }: { data: LandingPageData }) {
                                 placeholder={`Feature ${index + 1} Title`}
                             />
                             <Textarea
-                                value={feature.description}
+                                defaultValue={feature.description}
                                 onChange={(e) =>
                                     setLandingData({
                                         ...landingData,
@@ -124,8 +109,7 @@ export default function DashboardPage({ data }: { data: LandingPageData }) {
             {/* Pricing Section Editor */}
             <Card>
                 <CardHeader>
-                    <DeleteButton itemId={"684140c220702bea123be850"} collectionName={"landingPage"}
-                        pathToRevalidate={"/dashboard/landing"} />
+                    <ReusableAddItemDialog itemType={'plan'} />
                     <CardTitle> {landingData.pricing_section.title} </CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

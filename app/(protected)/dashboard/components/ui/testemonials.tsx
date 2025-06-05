@@ -1,6 +1,7 @@
 'use client'
 
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { ReusableAddItemDialog } from "../addLandingItem"
 
 type Testimonial = {
     name: string
@@ -24,6 +25,7 @@ export default function TestimonialsSectionDashboard({ testimonials }: Testimoni
                         Hear from users who love the experience.
                     </p>
                 </div>
+                <ReusableAddItemDialog itemType={'testimonial'} />
 
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {testimonials.map((testimonial, index) => (
