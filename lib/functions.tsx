@@ -32,6 +32,9 @@ export async function handleFetchCategory() {
 }
 
 
+
+
+
 export async function handleCreateCategory(categoryName: string) {
 
     try {
@@ -153,7 +156,27 @@ export async function handleDeleteItem(itemId: string) {
     } catch (error) {
         console.log("errorrrr ", error)
     }
+}
 
 
 
+
+export async function handleDeleteanItem(
+    itemId: string,
+    collectionName: string,
+    pathToRevalidate: string
+) {
+    try {
+        const query = { _id: new ObjectId(itemId) };
+        console.log("Deleting item with ID:", itemId);
+
+        const db = await client.db("photoGemma");
+
+        const result = await db.collection(collectionName).deleteOne(query);
+        console.log("Delete result:", result);
+
+        revalidatePath(pathToRevalidate);
+    } catch (error) {
+        console.error("Error deleting item:", error);
+    }
 }

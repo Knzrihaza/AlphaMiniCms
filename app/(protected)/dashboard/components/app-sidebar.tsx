@@ -12,6 +12,8 @@ import { NavMain } from "./nav-main"
 import { NavSecondary } from "./nav-secondary"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { data } from "@/components/mockData/mockdata"
+import Link from "next/link"
+import { ArrowUpNarrowWide } from "lucide-react"
 
 
 
@@ -26,10 +28,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
+              <Link href="/">
+                <ArrowUpNarrowWide className="!size-5" />
+                <span className="text-base font-semibold">Back to Website</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

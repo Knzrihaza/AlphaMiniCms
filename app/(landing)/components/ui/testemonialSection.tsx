@@ -1,6 +1,8 @@
 'use client'
 
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay"
 
 type Testimonial = {
     name: string
@@ -9,11 +11,11 @@ type Testimonial = {
 }
 
 type TestimonialsSectionProps = {
-    testimonials: Testimonial[]
+    data: Testimonial[]
 }
 
-export default function TestimonialsSection({ testimonials }: TestimonialsSectionProps) {
-    if (!testimonials || testimonials.length === 0) return null
+export default function TestimonialsSection({ data }: TestimonialsSectionProps) {
+    if (!data || data.length === 0) return null
 
     return (
         <>
@@ -25,24 +27,40 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
                     </p>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {testimonials.map((testimonial, index) => (
-                        <Card key={index} className="shadow-sm border-muted">
-                            <CardHeader>
-                                <blockquote className="text-sm text-gray-800 dark:text-gray-100 italic">
-                                    “{testimonial.quote}”
-                                </blockquote>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-base font-semibold text-gray-900 dark:text-white">
-                                    {testimonial.name}
-                                </p>
-                                {testimonial.role && (
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</p>
-                                )}
-                            </CardContent>
-                        </Card>
-                    ))}
+                <div className=" ">
+                    <Carousel plugins={[
+                        Autoplay({
+                            delay: 4000,
+                        }),
+                    ]}
+                        opts={{
+                            align: "start",
+                        }}
+                        className="w-full  ">
+                        <CarouselContent>
+                            {data.map((testimonial, index) => (
+                                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+
+                                    <Card key={index} className="shadow-sm border-muted">
+                                        <CardHeader>
+                                            <blockquote className="text-sm text-gray-800 dark:text-gray-100 italic">
+                                                “{testimonial.quote}”
+                                            </blockquote>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-base font-semibold text-gray-900 dark:text-white">
+                                                {testimonial.name}
+                                            </p>
+                                            {testimonial.role && (
+                                                <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}</p>
+                                            )}
+                                        </CardContent>
+                                    </Card>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+
+                    </Carousel>
                 </div>
             </section>
         </>

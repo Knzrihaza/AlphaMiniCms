@@ -27,7 +27,7 @@ export function LandingNavMain() {
                 "flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors",
                 isActive
                   ? "bg-primary dark:text-gray-900 text-gray-300"
-                  : "text-gray-700 hover:text-primary hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                  : "text-gray-700 hover:text-primary hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-stone-900"
               )}
             >
               {Icon && <Icon className="h-4 w-4" />}

@@ -13,6 +13,10 @@ import Image from "next/image";
 import Link from "next/link";
 import TestimonialsSection from "./components/ui/testemonialSection";
 import ContactSection from "./components/ui/contactSection";
+import client from "@/lib/mongoDb";
+import { LandingPageData } from "@/types/types";
+import { fetchCollectionData } from "@/lib/functions";
+import PricingSection from "./components/ui/pricingSection";
 
 const carouselImages = [
     { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 1" },
@@ -29,7 +33,7 @@ const pricingPlans = [
 ]
 
 
-const testimonialsData = [
+export const testimonialsData = [
     {
         name: "Alice Johnson",
         quote: "The customization options are amazing — exactly what I needed.",
@@ -47,110 +51,91 @@ const testimonialsData = [
     }
 ]
 
-export default function HomePage() {
-    return (
-        <div className="w-full mx-auto p-6 ">
-            <Card className="w-full mx-auto p-6  shadow-xl rounded-2x">
-                <div className="max-w-7xl mx-auto px-4 py-12">
-
-                    {/* Hero Section with Carousel */}
-                    <section className="mb-16 p-4 ">
-                        <Carousel className="w-full">
-                            <CarouselContent>
-                                {carouselImages.map((image, index) => (
-                                    <CarouselItem key={index}>
-                                        <div className="relative h-96 w-full">
-                                            <Image
-                                                src={image.src}
-                                                alt={image.alt}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious />
-                            <CarouselNext />
-                        </Carousel>
-                    </section>
-                    {/* Call to Action */}
-                    <section className="text-center mb-16">
-                        <h2 className="text-2xl font-semibold mb-4">Ready to Get Started?</h2>
-                        <p className="text-muted-foreground mb-6">
-                            Create your personalized portfolio or private gallery today.
-                        </p>
-                        <Link href="/contact">
-                            <Button variant="default">Contact Us</Button>
-                        </Link>
-                    </section>
+export default async function HomePage() {
 
 
-                    {/* Features Section */}
-                    <section className="grid md:grid-cols-3 gap-8 mb-16">
-                        <div>
-                            <h2 className="text-xl font-semibold mb-2">Easy Customization</h2>
-                            <p>
-                                Tailor your portfolio or gallery to reflect your unique style with our intuitive customization options.
+    try {
+        const db = await client.db("photoGemma")
+
+        const dataArray: LandingPageData[] = await fetchCollectionData<LandingPageData>(db, "landingPage")
+        const data: LandingPageData = dataArray[0]
+
+
+        console.log("ooooooooo", data.hero)
+        return (
+            <div className="w-full mx-auto p-6 ">
+                <Card className="w-full mx-auto p-6  shadow-xl rounded-2x">
+                    <div className="max-w-7xl mx-auto px-4 py-12">
+
+                        {/* Hero Section with Carousel */}
+                        <section className="mb-16 p-4 ">
+                            <Carousel className="w-full">
+                                <CarouselContent>
+                                    {carouselImages.map((image, index) => (
+                                        <CarouselItem key={index}>
+                                            <div className="relative h-96 w-full">
+                                                <Image
+                                                    src={image.src}
+                                                    alt={image.alt}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious />
+                                <CarouselNext />
+                            </Carousel>
+                        </section>
+                        {/* Call to Action */}
+                        <section className="text-center mb-16">
+                            <h2 className="text-2xl font-semibold mb-4"> {data.hero.headline} </h2>
+                            <p className="text-muted-foreground mb-6">
+                                {data.hero.description}
                             </p>
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-semibold mb-2">Responsive Design</h2>
-                            <p>
-                                Your work will look great on any device, ensuring a seamless experience for all visitors.
-                            </p>
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-semibold mb-2">Secure & Private</h2>
-                            <p>
-                                Keep your personal photos safe with our robust privacy settings and secure storage solutions.
-                            </p>
-                        </div>
-                    </section>
+                            <Link href={data.hero.cta.link}>
+                                <Button variant="default">{data.hero.cta.text}</Button>
+                            </Link>
+                        </section>
 
 
-
-                    <section className="py-16 px-6 md:px-12 lg:px-24">
-                        <div className="text-center mb-12">
-                            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                Pricing Plans
-                            </h2>
-                            <p className="text-gray-600 dark:text-gray-300 mt-2">
-                                Choose a plan that suits your needs.
-                            </p>
-                        </div>
-
-                        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                            {pricingPlans.map((plan, index) => (
-                                <Card key={index} className="shadow hover:shadow-lg transition-shadow">
-                                    <CardHeader>
-                                        <CardTitle className="text-xl">{plan.title}</CardTitle>
-                                        <p className="text-gray-500 dark:text-gray-400 text-sm">
-                                            {plan.description}
-                                        </p>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <div className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                                            {plan.price}
-                                        </div>
-                                        <Button className="w-full">Get Started</Button>
-                                    </CardContent>
-                                </Card>
+                        {/* Features Section */}
+                        <section className="grid md:grid-cols-3 gap-8 mb-16">
+                            {data.features.map((feature, index) => (
+                                <div key={index}>
+                                    <h2 className="text-xl font-semibold mb-2">{feature.title}</h2>
+                                    <p>{feature.description}</p>
+                                </div>
                             ))}
-                        </div>
-                    </section>
-
-
-                    <TestimonialsSection testimonials={testimonialsData} />
-
-
-                    <ContactSection />
+                        </section>
 
 
 
 
-                </div>
-            </Card>
-        </div>
-    );
+
+                        <PricingSection data={data.pricing_section} />
+
+                        <TestimonialsSection data={data.testimonials} />
+
+
+                        <ContactSection />
+
+
+
+
+                    </div>
+                </Card>
+            </div>
+        );
+    } catch (error) {
+        console.log(error)
+        return <h1>Something bad happened</h1>;
+    }
+
+
+
+
+
+
 }

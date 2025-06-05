@@ -3,7 +3,7 @@ export interface GalleryImage {
     title: string;
     description: string;
     isSlider: boolean;
-    category:string
+    category: string
     filename: string;
     url: string;
     createdAt: string;
@@ -36,6 +36,40 @@ export interface FetchOptions {
 }
 
 
+export type LandingPageData = {
+    hero: {
+        headline: string;
+        description: string;
+        cta: {
+            text: string;
+            link: string;
+        };
+    };
+    features: Array<{
+        title: string;
+        description: string;
+    }>;
+    pricing_section: {
+        title: string;
+        subtitle: string;
+        plans: Array<{
+            name: string;
+            audience: string;
+            price: number | null;
+            currency: string;
+            billing_cycle: 'monthly' | 'custom';
+            features: string[];
+            is_free: boolean;
+            custom_pricing?: boolean;
+            contact_sales?: boolean;
+        }>;
+    };
+    testimonials: Array<{
+        name: string;
+        quote: string;
+        role: string;
+    }>;
+};
 
 
 export interface Post {

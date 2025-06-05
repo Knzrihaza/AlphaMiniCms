@@ -4,16 +4,17 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
+import TestimonialsSectionDashboard from '../components/ui/testemonials';
+import { LandingPageData } from '@/types/types';
+import { Checkbox } from '@/components/ui/checkbox';
+import { PricingItem } from '@/app/(landing)/components/ui/pricingSection';
+import { DeleteButton } from '../components/deleteButton';
 
-export default function DashboardPage() {
-    const [hero, setHero] = useState({
-        headline: 'Ready to Get Started?',
-        description: 'Create your personalized portfolio or private gallery today.',
-        cta: 'Contact Us',
-    });
+export default function DashboardPage({ data }: { data: LandingPageData }) {
+
 
     const [features, setFeatures] = useState([
         {
@@ -30,27 +31,22 @@ export default function DashboardPage() {
         },
     ]);
 
-    const updateFeature = (index: number, field: 'title' | 'desc', value: string) => {
-        const updated = [...features];
-        updated[index][field] = value;
-        setFeatures(updated);
-    };
 
 
-    const [pricing, setPricing] = useState([
-        { title: 'Basic Plan', description: 'Good for individuals.', price: 'Free' },
-    ]);
 
-    const updatePricing = (index: number, field: 'title' | 'description' | 'price', value: string) => {
-        const updated = [...pricing];
-        updated[index][field] = value;
-        setPricing(updated);
-    };
 
+    const [landingData, setLandingData] = useState(data);
+
+    const [hero, setHero] = useState({
+        headline: 'Ready to Get Started?',
+        description: 'Create your personalized portfolio or private gallery today.',
+        cta: 'Contact Us',
+    });
     return (
         <div className=" gap-4 px-4 py-12">
             <h1 className=" text-3xl font-bold text-gray-900 dark:text-white mb-6">Landing Page Editor</h1>
 
+            {/* Hero Section Editor */}
 
             <Card>
                 <CardHeader>
@@ -62,46 +58,28 @@ export default function DashboardPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <Input
-                        value={hero.headline}
-                        onChange={(e) => setHero({ ...hero, headline: e.target.value })}
+                        value={landingData.hero.headline}
+                        onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, headline: e.target.value } })}
                         placeholder="Headline"
+                        defaultValue={data.hero.headline}
                     />
                     <Textarea
-                        value={hero.description}
-                        onChange={(e) => setHero({ ...hero, description: e.target.value })}
+                        value={landingData.hero.description}
+                        onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, description: e.target.value } })}
                         placeholder="Description"
                     />
                     <Input
-                        value={hero.cta}
-                        onChange={(e) => setHero({ ...hero, cta: e.target.value })}
+                        value={landingData.hero.cta.text}
+                        onChange={(e) => setLandingData({ ...landingData, hero: { ...landingData.hero, cta: { ...landingData.hero.cta, text: e.target.value } } })}
                         placeholder="CTA Button Text"
                     />
                 </CardContent>
+                <CardFooter>
+                    <Button onClick={() => console.log(landingData.hero)}>Send</Button>
+                </CardFooter>
             </Card>
 
-            {/* Hero Section Editor */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Hero Section</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <Input
-                        value={hero.headline}
-                        onChange={(e) => setHero({ ...hero, headline: e.target.value })}
-                        placeholder="Headline"
-                    />
-                    <Textarea
-                        value={hero.description}
-                        onChange={(e) => setHero({ ...hero, description: e.target.value })}
-                        placeholder="Description"
-                    />
-                    <Input
-                        value={hero.cta}
-                        onChange={(e) => setHero({ ...hero, cta: e.target.value })}
-                        placeholder="CTA Button Text"
-                    />
-                </CardContent>
-            </Card>
+
 
             {/* Features Section Editor */}
             <Card>
@@ -109,58 +87,64 @@ export default function DashboardPage() {
                     <CardTitle>Features</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                    {features.map((feature, index) => (
+                    {landingData.features.map((feature, index) => (
                         <div key={index} className="space-y-2">
                             <Input
                                 value={feature.title}
-                                onChange={(e) => updateFeature(index, 'title', e.target.value)}
+                                onChange={(e) =>
+                                    setLandingData({
+                                        ...landingData,
+                                        features: landingData.features.map((f, i) =>
+                                            i === index ? { ...f, title: e.target.value } : f
+                                        ),
+                                    })
+                                }
                                 placeholder={`Feature ${index + 1} Title`}
                             />
                             <Textarea
-                                value={feature.desc}
-                                onChange={(e) => updateFeature(index, 'desc', e.target.value)}
-                                placeholder={`Feature ${index + 1} Description`}
+                                value={feature.description}
+                                onChange={(e) =>
+                                    setLandingData({
+                                        ...landingData,
+                                        features: landingData.features.map((f, i) =>
+                                            i === index ? { ...f, description: e.target.value } : f
+                                        ),
+                                    })
+                                } placeholder={`Feature ${index + 1} Description`}
                             />
                         </div>
                     ))}
                 </CardContent>
+                <CardFooter>
+                    <Button onClick={() => console.log(landingData.features)}>Send</Button>
+                </CardFooter>
             </Card>
+
+
+            {/* Pricing Section Editor */}
             <Card>
                 <CardHeader>
-                    <CardTitle>Pricing Plans</CardTitle>
+                    <DeleteButton itemId={"684140c220702bea123be850"} collectionName={"landingPage"}
+                        pathToRevalidate={"/dashboard/landing"} />
+                    <CardTitle> {landingData.pricing_section.title} </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                    {pricing.map((plan, index) => (
-                        <div key={index} className="space-y-2">
-                            <Input
-                                value={plan.title}
-                                onChange={(e) => updatePricing(index, 'title', e.target.value)}
-                                placeholder={`Plan ${index + 1} Title`}
-                            />
-                            <Textarea
-                                value={plan.description}
-                                onChange={(e) => updatePricing(index, 'description', e.target.value)}
-                                placeholder={`Plan ${index + 1} Description`}
-                            />
-                            <Input
-                                value={plan.price}
-                                onChange={(e) => updatePricing(index, 'price', e.target.value)}
-                                placeholder={`Plan ${index + 1} Price`}
-                            />
-                        </div>
+                <CardContent className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    {landingData.pricing_section.plans.map((plan, index) => (
+                        <PricingItem key={index} plan={plan} />
                     ))}
+
                     <Button
                         variant="outline"
-                        onClick={() => setPricing([...pricing, { title: '', description: '', price: '' }])}
+                        onClick={() => console.log(landingData.pricing_section)}
                     >
                         Add Plan
                     </Button>
                 </CardContent>
             </Card>
 
+            <TestimonialsSectionDashboard testimonials={data.testimonials} ></TestimonialsSectionDashboard>
 
-
-            <Button onClick={() => console.log({ hero, features })}>Save Changes</Button>
+            <Button onClick={() => console.log({ landingData })}>Save Changes</Button>
         </div>
     );
 }

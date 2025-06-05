@@ -8,6 +8,8 @@ import ImageUploadCard from '../components/imageUploaderCard';
 import { DashboardMetrics } from './page';
 import StatsWidget from '../components/statsWidget';
 import { BlogPostCreator } from '../components/blogPostCreator';
+import { Calendar } from '@/components/ui/calendar';
+import { useState } from 'react';
 
 
 
@@ -18,6 +20,8 @@ interface DashboardClientPageProps {
 }
 
 export default function DashboardClientPage({ metrics }: DashboardClientPageProps) {
+    const [date, setDate] = useState<Date | undefined>(new Date())
+
     return (
         <div className="flex-1 space-y-4 p-8 pt-6">
             <div className="flex items-center justify-between space-y-2">
@@ -44,7 +48,14 @@ export default function DashboardClientPage({ metrics }: DashboardClientPageProp
                         <CardTitle>Overview</CardTitle>
                     </CardHeader>
                     <CardContent className="pl-2">
-                        {/* Overview content goes here */}
+                        <div className="flex flex-col flex-wrap items-start gap-2 @md:flex-row">
+                            <Calendar
+                                mode="single"
+                                selected={date}
+                                onSelect={setDate}
+                                className="rounded-md border shadow-sm"
+                            />
+                        </div>
                     </CardContent>
                 </Card>
                 <div className="col-span-5">
