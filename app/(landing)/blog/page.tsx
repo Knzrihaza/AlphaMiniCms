@@ -1,5 +1,4 @@
 
-import { Post } from "@/types/types";
 // import BlogItems from ".";
 import client from "@/lib/mongoDb";
 import BlogItems from ".";
@@ -16,7 +15,7 @@ export default async function BlogPage() {
 
         console.log("gggggggggggg", jsonData)
         return (
-            <div className="max-w-4xl mx-auto px-4 py-10">
+            <div className="max-w-6xl mx-auto  px-4 py-10">
                 <h1 className="text-4xl font-bold mb-8 text-center">Our Blog</h1>
 
                 <BlogItems blogPosts={jsonData} />

@@ -13,11 +13,13 @@ import Image from "next/image";
 import Link from "next/link";
 import TestimonialsSection from "./components/ui/testemonialSection";
 import ContactSection from "./components/ui/contactSection";
+import EmblaCarousel from "@/components/widgets/carousel/emblaCarousel";
+import { EmblaOptionsType } from 'embla-carousel'
 
 const carouselImages = [
-    { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 1" },
-    { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 2" },
-    { src: "https://images.pexels.com/photos/31556575/pexels-photo-31556575/free-photo-of-cozy-morning-coffee-on-bed-with-newspaper.jpeg", alt: "Slide 3" },
+    { src: "https://images.pexels.com/photos/2613148/pexels-photo-2613148.jpeg", alt: "Slide 1" },
+    { src: "https://images.pexels.com/photos/68744/loggerhead-turtle-sea-ocean-water-68744.jpeg", alt: "Slide 2" },
+    { src: "https://images.pexels.com/photos/109892/pexels-photo-109892.jpeg", alt: "Slide 3" },
 ];
 
 
@@ -47,32 +49,48 @@ const testimonialsData = [
     }
 ]
 
+const OPTIONS: EmblaOptionsType = {
+    align: 'start',
+    direction: 'rtl',
+    loop: true
+}
+
+const SLIDE_COUNT = 5
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
+
+
 export default function HomePage() {
     return (
-        <div className="w-full mx-auto p-6 ">
-            <Card className="w-full mx-auto p-6  shadow-xl rounded-2x">
+        <div className="w-full mx-auto p-2 md:p-6 ">
+            <Card className="w-full mx-auto p-2 md:p-4  shadow-xl rounded-2x">
                 <div className="max-w-7xl mx-auto px-4 py-12">
 
+
+
+
+
                     {/* Hero Section with Carousel */}
-                    <section className="mb-16 p-4 ">
-                        <Carousel className="w-full">
-                            <CarouselContent>
-                                {carouselImages.map((image, index) => (
-                                    <CarouselItem key={index}>
-                                        <div className="relative h-96 w-full">
-                                            <Image
-                                                src={image.src}
-                                                alt={image.alt}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious />
-                            <CarouselNext />
-                        </Carousel>
+                    <section className="mb-16 px-4 ">
+                        <div className="w-full px-3">
+                            <Carousel className="w-full">
+                                <CarouselContent>
+                                    {carouselImages.map((image, index) => (
+                                        <CarouselItem key={index}>
+                                            <div className="relative h-96 w-full">
+                                                <Image
+                                                    src={image.src}
+                                                    alt={image.alt}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious />
+                                <CarouselNext />
+                            </Carousel>
+                        </div>
                     </section>
                     {/* Call to Action */}
                     <section className="text-center mb-16">
@@ -87,7 +105,7 @@ export default function HomePage() {
 
 
                     {/* Features Section */}
-                    <section className="grid md:grid-cols-3 gap-8 mb-16">
+                    <section className="grid xs:px-2 sm:px-7 md:px-5 md:grid-cols-3 gap-8 mb-16">
                         <div>
                             <h2 className="text-xl font-semibold mb-2">Easy Customization</h2>
                             <p>
@@ -110,7 +128,7 @@ export default function HomePage() {
 
 
 
-                    <section className="py-16 px-6 md:px-12 lg:px-24">
+                    <section className="py-16 px-2 md:px-8 lg:px-12">
                         <div className="text-center mb-12">
                             <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
                                 Pricing Plans

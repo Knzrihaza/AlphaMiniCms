@@ -6,6 +6,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { auth } from "@/components/providers/authProvider"
 import { SiteAlert } from "./components/site-alert"
 import { redirect } from "next/navigation"
+import { Dialog } from "@/components/ui/dialog"
 
 export default async function DashboardLayout({
   children,
@@ -24,13 +25,15 @@ export default async function DashboardLayout({
     <SidebarProvider
       defaultOpen={defaultOpen}
     >
-      <AppSidebar variant="inset" />
-      <SidebarInset>
-        <SiteHeader />
-        <SiteAlert />
+      <Dialog>
+        <AppSidebar variant="inset" />
+        <SidebarInset>
+          <SiteHeader />
+          <SiteAlert />
 
-        <div className="flex flex-1 flex-col">{children}</div>
-      </SidebarInset>
+          <div className="flex flex-1 flex-col">{children}</div>
+        </SidebarInset>
+      </Dialog>
     </SidebarProvider>
   )
 }

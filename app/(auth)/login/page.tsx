@@ -35,7 +35,24 @@ export default function Page() {
                 </Link>
 
                 <div className="lg:p-8">
+
                     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+                        <div className="relative z-20 flex items-center text-lg font-medium">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="mr-2 h-6 w-6"
+                            >
+                                <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
+                            </svg>
+                            Acme Labs
+                        </div>
+
                         <div className="flex flex-col space-y-2 text-center">
                             <h1 className="text-2xl font-semibold tracking-tight">
                                 Create an account
@@ -87,16 +104,9 @@ export default function Page() {
                                 <div className="absolute inset-0 flex items-center">
                                     <span className="w-full border-t" />
                                 </div>
-                                <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-background px-2 text-muted-foreground">
-                                        Or continue with
-                                    </span>
-                                </div>
+
                             </div>
-                            <Button variant="outline" type="button">
-                                {" "}
-                                GitHub
-                            </Button>
+
                         </div>
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             By clicking continue, you agree to our{" "}
@@ -116,34 +126,21 @@ export default function Page() {
                             .
                         </p>
                     </div>
-                </div>  <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-                    <div className="absolute inset-0 bg-zinc-900" />
-                    <div className="relative z-20 flex items-center text-lg font-medium">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="mr-2 h-6 w-6"
-                        >
-                            <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-                        </svg>
-                        Acme Inc
-                    </div>
-                    <div className="relative z-20 mt-auto">
-                        <blockquote className="space-y-2">
-                            <p className="text-lg">
-                                &ldquo;This library has saved me countless hours of work and
-                                helped me deliver stunning designs to my clients faster than
-                                ever before.&rdquo;
-                            </p>
-                            <footer className="text-sm">Sofia Davis</footer>
-                        </blockquote>
-                    </div>
                 </div>
+                <div
+                    className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex"
+                    style={{
+                        backgroundImage: `url('https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                    }}
+                >
+                    {/* Dark overlay */}
+                    <div className="absolute inset-0 bg-zinc-900 opacity-60" />
+
+
+                </div>
+
             </div>
         </>
 

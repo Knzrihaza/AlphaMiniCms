@@ -86,16 +86,6 @@ export const data = {
             url: "#",
             icon: IconSettings,
         },
-        {
-            title: "Get Help",
-            url: "#",
-            icon: IconHelp,
-        },
-        {
-            title: "Search",
-            url: "#",
-            icon: IconSearch,
-        },
     ],
     documents: [
         {
@@ -139,11 +129,6 @@ export const landingData = {
             title: "Settings",
             url: "/dashboard/settings",
             icon: IconSettings,
-        },
-        {
-            title: "Get Help",
-            url: "#",
-            icon: IconHelp,
         },
         {
             title: "Search",

@@ -10,6 +10,8 @@ import {
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuGroup, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { logout } from "../functions"
 
 export function NavUser({
   user,
@@ -24,7 +26,7 @@ export function NavUser({
 
   async function onSubmit() {
     //console.log("Auth credentials", formData.get("email"), formData.get("password"))
-
+    await logout()
   }
 
 
@@ -58,18 +60,15 @@ export function NavUser({
           >
 
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconCreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <IconNotification />
-                Notifications
-              </DropdownMenuItem>
+              <Link href={"/dashboard/account"}>
+
+                <DropdownMenuItem>
+                  <IconUserCircle />
+                  Account
+                </DropdownMenuItem>
+              </Link>
+
+
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={e => {

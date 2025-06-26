@@ -17,7 +17,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
 
     return (
         <>
-            <section className="py-16 px-6 md:px-12 lg:px-24 bg-white dark:bg-stone-900">
+            <section className="py-16 px-2 md:px-6 lg:px-12 bg-white dark:bg-stone-900">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-900 dark:text-white">What People Say</h2>
                     <p className="text-gray-600 dark:text-gray-400 mt-2">

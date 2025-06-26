@@ -20,7 +20,7 @@ export default function BlogItems({ blogPosts }: BlogItemsProps) {
 
     return (
 
-        <div className="grid gap-6">
+        <div className="w-full grid gap-6">
             {posts?.map((post) => (
                 <Card key={post.slug} className="hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
