@@ -17,7 +17,6 @@ export default async function BlogPage() {
         return (
             <div className="max-w-6xl mx-auto  px-4 py-10">
                 <h1 className="text-4xl font-bold mb-8 text-center">Our Blog</h1>
-
                 <BlogItems blogPosts={jsonData} />
             </div>
         );
