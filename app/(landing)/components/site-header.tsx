@@ -1,19 +1,10 @@
 
 import { Separator } from "@/components/ui/separator"
 import { ModeToggle } from "./mode-toggle"
-import { auth } from "@/components/providers/authProvider"
 import LoginBtn from "./loginBtn"
 import { LandingNavMain } from "./nav-main-landing"
 
 export async function SiteHeader() {
-
-
-  const test = await auth()
-
-
-
-
-  console.log("aaaaaaaaaaaaaaaa", test)
 
 
   return (
